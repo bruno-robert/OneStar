@@ -136,8 +136,8 @@ def write_to_json(data, file_name):
 
 # In[86]:
 print('\n')
-write_to_json(places, 'places.txt')
-write_to_json(details, 'details.txt')
+write_to_json(places, 'places.json')
+write_to_json(details, 'details.json')
 
 
 # In[ ]:
