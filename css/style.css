@@ -1,0 +1,140 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700");
+* {
+  outline-width: 0;
+  font-family: 'Roboto';
+}
+
+body {
+  background: #eee;
+}
+
+header {
+  background: #f5b704;
+  display: flex;
+  padding: 15px;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 98;
+}
+
+.header-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+.header-left h1 {
+  color: #fff;
+  font-weight: 300;
+  font-size: 1.8em;
+  margin: 0;
+}
+
+
+.header-middle {
+  display: flex;
+  flex: 1;
+  align-items: center;
+}
+.header-middle form {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+
+}
+.header-middle form input[type=text] {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  border: none;
+  padding: 15px 15px 15px 55px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: #fff;
+  transition: 0.3s ease;
+  font-family: 'Roboto', sans-serif;
+ font-weight: 300;
+ font-size: 15px;
+  -webkit-transition: 0.3s ease;
+}
+.header-middle form input[type=text]::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+.header-middle form input[type=text]:focus {
+  background: rgba(0, 0, 0, 0.15);
+
+}
+.header-middle form button {
+  position: absolute;
+  background: transparent;
+  border: none;
+  color: #fff;
+  padding: 16px;
+  border-radius: 5px 0 0 5px;
+  cursor: pointer;
+  transition: 0.3s ease;
+   font-size: 13px;
+  -webkit-transition: 0.3s ease;
+}
+.header-middle form button:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.header-right {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+
+
+
+.content{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.side{
+  float: left;
+  width: 400px;
+  height: 100%;
+  background-color: white;
+}
+
+.map {
+    float: right;
+    width: calc(100% - 400px);
+    height: 100%;
+    background-color: white;
+}
+
+
+@media screen and (max-width: 700px) {
+  .nav-social {
+    display: flex;
+  }
+
+  .header-left {
+    flex: 0;
+        display: none;
+  }
+  .header-left h1 {
+    display: none;
+  }
+
+  .header-middle {
+    flex: 1;
+    justify-content: center;
+  }
+  .header-middle form {
+    width: 75%;
+  }
+
+  .header-right {
+    display: none;
+  }
+}
