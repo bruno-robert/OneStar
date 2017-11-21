@@ -29,10 +29,27 @@
 
     <script>
       var map;
+	  
+	  var marker = []
+
+for(var i = 0; i<details.length;i++){
+
+marker[i] = new google.maps.Marker({
+var t_p = {lat:details[i]['results']['geometry']['lat'],lng: details[i]['results']['geometry']['lng']}
+    position: t_p,
+    title: details[i]['results]['name']
+});
+
+marker[i].addListener('click', function() {
+    temporary_function(details[i]['results']['place_id']);
+  });
+
+}
+
 
 
       /* Data points defined as a mixture of WeightedLocation and LatLng objects */
-var heatMapData = [
+/*var heatMapData = [
   {location: new google.maps.LatLng(45.5016889,-73.567256), weight: 1},
   {location: new google.maps.LatLng(45.5016889,-73.567256), weight: 1},
   {location: new google.maps.LatLng(45.7016889,-73.567256), weight: 1},
@@ -43,7 +60,7 @@ var heatMapData = [
   {location: new google.maps.LatLng(45.5016889,-73.567256), weight: 1},
   {location: new google.maps.LatLng(45.5016889,-73.27256), weight: 10},
   {location: new google.maps.LatLng(45.5016889,-73.567256), weight: 1}
-];
+];*/
 
 var Montreal = new google.maps.LatLng( 45.5016889,-73.567256);
 
