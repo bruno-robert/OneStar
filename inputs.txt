@@ -1,0 +1,19 @@
+Restaurant Name = name
+Rating = rating
+Total Amount Fined = amount
+Type of Restaurant = type
+Address = address
+Website = site
+Phone Number = tel
+
+
+infraction div is what needs to be duplicated for multiples
+dote of fine = finedate
+amount fined = total
+fine description = description
+
+
+review div is what needs to be duplicated for multiples
+Reviewer Name = reviewname
+Review Date = reviewdate
+Review Text = Reviewdesc

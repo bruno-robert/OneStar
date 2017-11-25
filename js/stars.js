@@ -1,0 +1,51 @@
+(function() {
+	
+	var rating2 = document.querySelector(".rating2");
+
+	var num = document.getElementById('rating');
+	var rating  = num.textContent || num.innerText;
+
+	function displayRating(rating = 0, stars = 5) {
+		const CONTAINER  = document.getElementById("dynamic-rating"),
+			FILLED_CLASS = 'star--fill',
+			HALF_CLASS   = 'star--half'
+
+		let previous     = 0,
+			classes      = '',
+			starsDisplay = '<div class="starrating">'
+
+		// Loop through all stars (1 - 5) to decide their display
+		for (let current = 1; current <= stars; current++) {
+			// Determine which class to display
+			(rating > previous && rating < current)
+				? classes = HALF_CLASS
+				: (rating >= current)
+					? classes = FILLED_CLASS
+					: classes = ''
+
+			// Generate required HTML
+			starsDisplay += `
+				<div class="star  ${classes}">
+					<svg class="icon  icon--star-left">
+						<use xlink:href="#icon-star-left"></use>
+					</svg>
+					<svg class="icon  icon--star-right">
+						<use xlink:href="#icon-star-right"></use>
+					</svg>
+				</div>`
+
+			previous++
+		}
+
+		starsDisplay += `</div>`
+
+		return CONTAINER.insertAdjacentHTML('beforeend', starsDisplay)
+	}
+
+
+
+	// Inject star rating HTML
+	displayRating(rating)
+	rating2.innerHTML = rating;
+
+})()
