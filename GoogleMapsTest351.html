@@ -27,13 +27,11 @@
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCi5dYHKkPJRUTu7TEr76Vj-WaSOZ_lKVc&libraries=visualization">
   </script>
   
-  <script type="text/javascript"
-  src="https://github.com/uranium78/OneStar/blob/master/data-grabber/data_complete.json">
-  </script>
+  
 
     <script>
       var map;
-	 // var heatMapData= []
+	  var heatMapData= []
 	  
 	 /* var marker = []
 
@@ -52,17 +50,20 @@ marker[i].addListener('click', function() {
   });
 
 }*/
+var mydata;
+var text = $.getJSON('https://github.com/uranium78/OneStar/blob/master/data-grabber/data_complete.json', function(){
+   mydata = text.responseJSON;
+});
+for(var i = 0; i<details.length;i++){
 
-var mydata = JSON.parse(data_complete.json);
-var t_pLat = mydata[1]['coordinates']['lat'];
-var t_pLng = mydata[1]['coordinates']['lng'];
+var t_pLat = mydata[i]['coordinates']['lat'];
+var t_pLng = mydata[i]['coordinates']['lng'];
 
       /* Data points defined as a mixture of WeightedLocation and LatLng objects */
-var heatMapData = [
-  {location: new google.maps.LatLng(t_pLat, t_pLng), weight: 1},
-  {location: new google.maps.LatLng(45.5016889,-73.567256), weight: 1},
- ];
-
+var heatMapData[i] = {location: new google.maps.LatLng(t_pLat, t_pLng), weight: 1},
+ // {location: new google.maps.LatLng(45.5016889,-73.567256), weight: 1},
+ 
+});
 //var Montreal = new google.maps.LatLng( 45.5016889,-73.567256);
 
 map = new google.maps.Map(document.getElementById('map'), {
