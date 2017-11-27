@@ -66,16 +66,16 @@ marker[i].addListener('click', function() {
     let t_pLat;
     let t_pLng;
     $.get('./data-grabber/data_complete.json', function(data) {
-      mydata = data;
-      t_pLat = mydata["3 AMIGOS"]['coordinates']['lat'];
-      t_pLng = mydata["3 AMIGOS"]['coordinates']['lng'];
+      let mydata = data;
+      let t_pLat = mydata["3 AMIGOS"]['coordinates']['lat'];
+      let t_pLng = mydata["3 AMIGOS"]['coordinates']['lng'];
 
 
 
       /* Data points defined as a mixture of WeightedLocation and LatLng objects */
       var heatMapData = [
         { location: new google.maps.LatLng(t_pLat, t_pLng), weight: 1 },
-        { location: new google.maps.LatLng(45.5016889, -73.567256), weight: 1 },
+        //{ location: new google.maps.LatLng(45.5016889, -73.567256), weight: 1 },
       ];
 
       //var Montreal = new google.maps.LatLng( 45.5016889,-73.567256);
