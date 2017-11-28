@@ -326,6 +326,7 @@ hr {
   font-weight: 400;
   font-size: 14px;
   text-align: left;
+    margin-bottom: 20px;
 }
 
 .rating2{
@@ -335,7 +336,7 @@ hr {
   font-size: 45px;
   text-align: center;
   color: #f5b704;
-  
+
 }
 
 .bottom .icon{
@@ -409,18 +410,20 @@ text-align: center;
 
 @media screen and (max-width: 700px) {
     .nav-social {
-        display: flex;
+    display: flex;
     }
+
     .header-left {
-        flex: 0;
-        display: none;
-    }
-    .header-left h1 {
-        display: none;
+    justify-content: center;
+    position: absolute;
+    margin-top: 10px;
+    margin-left: -40px;
+    width: 100%;
     }
     .header-middle {
         flex: 1;
         justify-content: center;
+        margin-top: 60px;
     }
     .header-middle form {
         width: 75%;
@@ -428,16 +431,14 @@ text-align: center;
     .header-right {
         display: none;
     }
-}
-
-@media screen and (max-width: 500px) {
-    .map {
-        display: none;
+    .content{
+      margin-top: 130px;
     }
-    .side {
+    .map {
         width: 100%;
     }
+    .side {
+      margin-left: -400px;
+    }
 }
-
-
 /* Responsive */
