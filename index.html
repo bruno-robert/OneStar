@@ -11,9 +11,16 @@
 
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCi5dYHKkPJRUTu7TEr76Vj-WaSOZ_lKVc&libraries=visualization"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 </head>
 
 <body>
+    <div class="toggle_container">
+        <div class="toggle">
+            <input class="tgl tgl-flip" id="cb5" type="checkbox" onclick="toggle();" />
+            <label class="tgl-btn" data-tg-off="Locations" data-tg-on="Heatmap" for="cb5"></label>
+        </div>
+    </div>
     <div class="svg-icons">
         <svg>
   		<symbol viewBox="0 0 832 1587" id="icon-star-left">
@@ -124,10 +131,7 @@
             </div>
 
             
-        <div class="map" id="map"><div class="toggle">
-            <input class="tgl tgl-flip" id="cb5" type="checkbox"/>
-            <label class="tgl-btn" data-tg-off="Locations" data-tg-on="Heatmap" for="cb5"></label>
-          </div></div>
+        <div class="map" id="map"></div>
 
     </div>
 
@@ -136,4 +140,5 @@
 <script src="js/heatmap.js" charset="utf-8"></script>
 <script src="js/stars.js" charset="utf-8"></script>
 <script src="js/stars2.js" charset="utf-8"></script>
+<script src="js/toggleButton.js"></script>
 </html>

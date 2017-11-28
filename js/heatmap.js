@@ -87,9 +87,9 @@ function populateMarkerMap(data) {
     var marker = new google.maps.Marker({
       position: { lat: vlat, lng: vlng },
       map: map,
-      title: title,
-      icon: image,
-      shape: shape
+      title: title//,
+      //icon: image,
+      //shape: shape
     });
     marker.addListener('click', () => displayPlaceInfo(title, address, null));
     markerMapData.push(marker);
