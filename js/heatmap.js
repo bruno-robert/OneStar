@@ -7,7 +7,7 @@ let t_pLng;
 
 //creates a heatmap
 function populateHeatMap(data) {
-  let heatMapData = [];//array that stores the heatmap data
+  let heatMapData = []; //array that stores the heatmap data
 
   //for each place, get coords and place in the array
   for (let key in data) {
@@ -33,16 +33,23 @@ function populateHeatMap(data) {
     data: heatMapData
   });
   heatmap.set('opacity', .8);
-  heatmap.set('radius', 20);//radius of each spot
-  heatmap.set('maxIntensity', 5);//set the intensity of the spots
-  heatmap.set('gradient', ["rgba(255,255,255,0)", "#F5B705", "RGBA(246, 100, 39, 1.00)"])//colour scheme
-  heatmap.setMap(map);//set visible
+  heatmap.set('radius', 20); //radius of each spot
+  heatmap.set('maxIntensity', 5); //set the intensity of the spots
+  heatmap.set('gradient', ["rgba(255,255,255,0)", "#F5B705", "RGBA(246, 100, 39, 1.00)"]) //colour scheme
+  heatmap.setMap(map); //set visible
+
+}
+
+function displayPlaceInfo(title, address, telephone) {
+  $(".name").html(title);
+  $(".bottom").html("");
+  $(".bottom").append('<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i><span class="address">' + address + '<span></div>');
 
 }
 
 //creates a markermap
 function populateMarkerMap(data) {
-  let markerMapData = [];//theoretically this array is pointless...
+  let markerMapData = []; //theoretically this array is pointless...
 
   //creates the map
   let map = new google.maps.Map(document.getElementById('map'), {
@@ -54,20 +61,40 @@ function populateMarkerMap(data) {
 
   });
 
+  var image = {
+    url: './marker.png',
+    size: new google.maps.Size(30, 30),
+    origin: new google.maps.Point(0, 0),
+    anchor: new google.maps.Point(15, 15)
+  };
+
+  // Shapes define the clickable region of the icon. The type defines an HTML
+  // <area> element 'poly' which traces out a polygon as a series of X,Y points.
+  // The final coordinate closes the poly by connecting to the first coordinate.
+  var shape = {
+    coords: [0, 0, 30],
+    type: 'circle'
+  };
+
   //for each place, creates a marker
   for (let key in data) {
     let vlat = data[key]["coordinates"]["lat"];
     let vlng = data[key]["coordinates"]["lng"];
     let title = data[key]['name'];
+    let address = data[key]['address'];
 
     //creation of the marker
     var marker = new google.maps.Marker({
       position: { lat: vlat, lng: vlng },
       map: map,
-      title: title
+      title: title,
+      icon: image,
+      shape: shape
     });
+    marker.addListener('click', () => displayPlaceInfo(title, address, null));
     markerMapData.push(marker);
   }
+
 }
 
 
