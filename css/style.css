@@ -110,9 +110,7 @@ hr {
 }
 
 .toggle{
-  float: left;
-  position: relative;
-z-index: 10;
+padding: 20px;
 }
 
 .tgl {
@@ -180,7 +178,7 @@ z-index: 10;
   position: absolute;
   line-height: 2em;
   font-weight: bold;
-  color: #fff;
+  color: black;
   position: absolute;
   top: 0;
   left: 0;
@@ -193,12 +191,14 @@ z-index: 10;
 }
 .tgl-flip + .tgl-btn:after {
   content: attr(data-tg-on);
-  background: rgba(0, 0, 0, 0.2);
+  background: white;
+  border: 1px solid black;
   -webkit-transform: rotateY(-180deg);
           transform: rotateY(-180deg);
 }
 .tgl-flip + .tgl-btn:before {
-  background: rgba(0, 0, 0, 0.15);
+  background: white;
+  border: 1px solid black;
   content: attr(data-tg-off);
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
@@ -216,7 +216,8 @@ z-index: 10;
   -webkit-transform: rotateY(0);
           transform: rotateY(0);
   left: 0;
-  background: rgba(0, 0, 0, 0.25);
+  background: white;
+  border: 1px solid black;
 }
 .tgl-flip:checked + .tgl-btn:active:after {
   -webkit-transform: rotateY(20deg);
