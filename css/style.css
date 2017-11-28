@@ -8,6 +8,9 @@ body {
     background: white;
 }
 
+.gmnoprint{
+  display: none;
+}
 
 /* header */
 
@@ -106,6 +109,11 @@ hr {
     justify-content: flex-end;
 }
 
+.toggle{
+  float: left;
+  position: relative;
+z-index: 10;
+}
 
 .tgl {
   display: none;
