@@ -412,6 +412,9 @@ text-align: center;
     .nav-social {
     display: flex;
     }
+.header{
+  overflow-y: hidden;
+}
 
     .header-left {
     justify-content: center;
@@ -433,9 +436,12 @@ text-align: center;
     }
     .content{
       margin-top: 130px;
+      height: calc(100% - 140px);
+      overflow-y: hidden;
     }
     .map {
         width: 100%;
+        overflow: hidden;
     }
     .side {
       margin-left: -400px;
