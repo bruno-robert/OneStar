@@ -336,17 +336,19 @@ padding: 20px;
 
 .tgl-flip+.tgl-btn:after {
     content: attr(data-tg-on);
-    background: rgba(0, 0, 0, 0.2);
+    background: white;
+    color : black;
     -webkit-transform: rotateY(-180deg);
     transform: rotateY(-180deg);
 }
 
 .tgl-flip+.tgl-btn:before {
-    background: rgba(0, 0, 0, 0.15);
+    background: rgb(255, 255, 255);
     content: attr(data-tg-off);
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 15px;
+    color: black;
 }
 
 .tgl-flip+.tgl-btn:active:before {
@@ -363,7 +365,7 @@ padding: 20px;
     -webkit-transform: rotateY(0);
     transform: rotateY(0);
     left: 0;
-    background: rgba(0, 0, 0, 0.25);
+    background: white;
 }
 
 .tgl-flip:checked+.tgl-btn:active:after {
