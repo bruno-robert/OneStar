@@ -1,81 +1,100 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Simple Map</title>
-    <meta name="viewport" content="initial-scale=1.0">
-    <meta charset="utf-8">
-    <style>
-      /* Always set the map height explicitly to define the size of the div
+
+<head>
+  <title>Simple Map</title>
+  <meta name="viewport" content="initial-scale=1.0">
+  <meta charset="utf-8">
+  <style>
+    /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-  </head>
-  <body>
-    <div><p> Hello world</p></div>
-    <div id="map"></div>
 
-    
-    <script type="text/javascript"
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCi5dYHKkPJRUTu7TEr76Vj-WaSOZ_lKVc&libraries=visualization">
-  </script>
+    #map {
+      height: 100%;
+    }
 
-    <script>
-      var map;
-	  
-	  var marker = []
+    /* Optional: Makes the sample page fill the window. */
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <div class="result">Hello</div>
+  <div>
+    <p> Hello world</p>
+  </div>
+  <div id="map"></div>
+
+
+
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCi5dYHKkPJRUTu7TEr76Vj-WaSOZ_lKVc&libraries=visualization"></script>
+
+
+  <script>
+    /*global $*/
+    /*global google*/
+    var map;
+    // var heatMapData= []
+
+    /* var marker = []
+
 
 for(var i = 0; i<details.length;i++){
-
+var t_p = {lat:JSON[i]['coordinates']['lat'],lng: JSON[i]['coordinates']['lng']}
+var t_pLat = JSON[i]['coordinates'][0]['lat']
+var t_pLng = JSON[i]['coordinates'][1]['lng']
 marker[i] = new google.maps.Marker({
-var t_p = {lat:details[i]['results']['geometry']['lat'],lng: details[i]['results']['geometry']['lng']}
     position: t_p,
-    title: details[i]['results]['name']
+	map:map
+    title: JSON[i]['name']
 });
 
 marker[i].addListener('click', function() {
     temporary_function(details[i]['results']['place_id']);
   });
 
-}
+}*/
+
+    let mydata;
+    let t_pLat;
+    let t_pLng;
+    $.get('./data-grabber/data_complete.json', function(data) {
+      let mydata = data;
+      let t_pLat = mydata["3 AMIGOS"]['coordinates']['lat'];
+      let t_pLng = mydata["3 AMIGOS"]['coordinates']['lng'];
 
 
 
       /* Data points defined as a mixture of WeightedLocation and LatLng objects */
-/*var heatMapData = [
-  {location: new google.maps.LatLng(45.5016889,-73.567256), weight: 1},
-  {location: new google.maps.LatLng(45.5016889,-73.567256), weight: 1},
-  {location: new google.maps.LatLng(45.7016889,-73.567256), weight: 1},
-  {location: new google.maps.LatLng(45.5016889,-73.567256), weight: 1},
-  {location: new google.maps.LatLng(45.5016889,-73.57256), weight: 5},
-  {location: new google.maps.LatLng(45.2016889,-73.567256), weight: 1},
-  {location: new google.maps.LatLng(45.5016889,-73.567256), weight: 1},
-  {location: new google.maps.LatLng(45.5016889,-73.567256), weight: 1},
-  {location: new google.maps.LatLng(45.5016889,-73.27256), weight: 10},
-  {location: new google.maps.LatLng(45.5016889,-73.567256), weight: 1}
-];*/
+      var heatMapData = [
+        { location: new google.maps.LatLng(t_pLat, t_pLng), weight: 1 },
+        //{ location: new google.maps.LatLng(45.5016889, -73.567256), weight: 1 },
+      ];
 
-var Montreal = new google.maps.LatLng( 45.5016889,-73.567256);
-
-map = new google.maps.Map(document.getElementById('map'), {
-  center: new google.maps.LatLng( 45.5016889,-73.567256),
-  zoom: 13,
-  mapTypeId: 'satellite'
-});
-
-var heatmap = new google.maps.visualization.HeatmapLayer({
-  data: heatMapData
-});
-heatmap.setMap(map);
-    </script>
+      //var Montreal = new google.maps.LatLng( 45.5016889,-73.567256);
 
 
-  </body>
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: new google.maps.LatLng(45.5016889, -73.567256),
+        zoom: 13,
+        mapTypeId: 'satellite'
+      });
+
+      var heatmap = new google.maps.visualization.HeatmapLayer({
+        data: heatMapData
+      });
+      heatmap.setMap(map);
+    });
+  </script>
+
+
+</body>
+
 </html>

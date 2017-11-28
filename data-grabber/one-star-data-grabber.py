@@ -29,6 +29,7 @@ def google_place_search(api_key, location='45.5017,-73.5673', radius='1000', loc
                       'type': location_type,
                       'key' : api_key}
     r = requests.get(base_url, params=parameter_list)
+    print(r.url)
     
     
     parsed_json = json.loads(r.text)
@@ -96,7 +97,7 @@ def google_detail_cleanup(details):
 
 # In[8]:
 
-data = google_place_search(api_key='AIzaSyAOFtHfpkCMyIim6wEFoPGW-Qlyu5nbPuA')
+data = google_place_search(api_key='AIzaSyAOFtHfpkCMyIim6wEFoPGW-Qlyu5nbPuA', radius='100')
 google_place_cleanup(data=data)
 places = data['results']
 places
