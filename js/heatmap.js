@@ -5,6 +5,16 @@ let mydata;
 let t_pLat;
 let t_pLng;
 
+function upperCaseFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function lowerCaseAllWordsExceptFirstLetters(string) {
+  return string.replace(/\w\S*/g, function(word) {
+    return word.charAt(0) + word.slice(1).toLowerCase();
+  });
+}
+
 //creates a heatmap
 function populateHeatMap(data) {
   let heatMapData = []; //array that stores the heatmap data
@@ -40,10 +50,52 @@ function populateHeatMap(data) {
 
 }
 
-function displayPlaceInfo(title, address, telephone) {
+/*function displayPlaceInfo(title, address, telephone) {
   $(".name").html(title);
   $(".bottom").html("");
   $(".bottom").append('<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i><span class="address">' + address + '<span></div>');
+
+}*/
+
+function displayPlaceInfo(title, address, telephone, website, fine_date, fine, reason) {
+
+  //adding telephone
+  if (telephone != null) {
+    $(".bottom").append('<div class="phone"><i class="fa fa-phone" aria-hidden="true"></i><span class="tel">' + telephone + '< span > << / div > ');
+  }
+
+  //adding website
+  if (website != null) {
+    $(".bottom").append('<div class="web"><i class="fa fa-globe" aria-hidden="true"></i><span class="site">' + website + '<span></div>');
+  }
+
+  //adding establishment name
+  title = upperCaseFirstLetter(lowerCaseAllWordsExceptFirstLetters(title));
+  $(".name").html(title);
+
+  //calculates the total of the fines (the fines are strings and need to be changed to integers/doubles)
+  let total_fines = 0;
+  for (let i = 0; i < fine.length; i++) {
+    total_fines += Number(fine[i].replace(/[^0-9\.-]+/g, ""));
+  }
+  $(".amount").html("$" + total_fines);
+
+
+  $(".bottom").html(""); //emptying the previous data
+
+  //adding address
+  $(".bottom").append('<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i><span class="address">' + address + '<span></div>');
+
+  $(".bottom").append(' <div class="infraction">');
+  for (let i = 0; i < fine.length; i++) {
+    $(".infraction").append('<div class="finedate">Date of infraction<br><span class="date">' + fine_date[i] + '<span></div>');
+    $(".infraction").append(' <div class="fineamount">Amount<br><span class="total">' + fine[i] + '<span></div>');
+
+    $(".infraction").append('<div class="description">' + reason[i] + '</div>');
+  }
+  $(".bottom").append('</div>');
+
+
 
 }
 
@@ -82,16 +134,20 @@ function populateMarkerMap(data) {
     let vlng = data[key]["coordinates"]["lng"];
     let title = data[key]['name'];
     let address = data[key]['address'];
+    let fine = data[key]['fine'];
+    let fine_date = data[key]['fine_date'];
+    let reason = data[key]['reason'];
+    let telephone, website = null;
 
     //creation of the marker
     var marker = new google.maps.Marker({
       position: { lat: vlat, lng: vlng },
       map: map,
-      title: title//,
+      title: title //,
       //icon: image,
       //shape: shape
     });
-    marker.addListener('click', () => displayPlaceInfo(title, address, null));
+    marker.addListener('click', () => displayPlaceInfo(title, address, telephone, website, fine_date, fine, reason));
     markerMapData.push(marker);
   }
 
