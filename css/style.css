@@ -439,6 +439,7 @@ input[type=checkbox] {
     position: absolute;
     top: 40px;
     left: -400px;
+    color: rgba(0, 0, 0, 0.4);
     background-color: rgba(0, 0, 0, 0.05);
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     border-bottom:  1px solid rgba(0, 0, 0, 0.1);
