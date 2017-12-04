@@ -54,12 +54,25 @@ function populateHeatMap(data) {
 
 //when using a mobile device or a small window, then this will display teh information pane when you select a place
 function displayInfoPane() {
-  $(".side").css({ "margin-left": "0px", "width": "100%" });
+  // Check
+  document.getElementById("nav-trigger").checked = true;
+  $('#side').addClass('side2');
+  $('#map').addClass('map2');
+  $('#toggle').addClass('toggle_container2');
+  $('#nav').addClass('nav2');
+  $('#nav-trigger').siblings('label').html('<i class="fa fa-chevron-left" aria-hidden="true"></i>');
+
 }
 
 //when using a mobile device or a small window, then this will hide teh information pane
 function hideInfoPane() {
-  $(".side").css("margin-left", "-400px");
+  // Uncheck
+  document.getElementById("nav-trigger").checked = false;
+  $('#side').removeClass('side2');
+  $('#map').removeClass('map2');
+  $('#toggle').removeClass('toggle_container2');
+  $('#nav').removeClass('nav2');
+  $('#nav-trigger').siblings('label').html('<i class="fa fa-chevron-right" aria-hidden="true"></i>');
 }
 
 //given a google_id, it populates the side bar wit hsome extra data
@@ -82,13 +95,13 @@ function hideInfoPane() {
 //updates the InfoPane's information (html)
 function displayPlaceInfo(title, address, fine_date, fine, reason, phone, website, reviews) {
   //adding telephone
-  if(!(phone = "")) {
+  if (!(phone = "")) {
     $(".bottom").append('<div class="phone"><i class="fa fa-phone" aria-hidden="true"></i><span class="tel">' + phone + '< span > << / div > ');
   }
-  
+
   //adding website
-  if(!(website == "")) {
-  $(".bottom").append('<div class="web"><i class="fa fa-globe" aria-hidden="true"></i><span class="site">' + website + '<span></div>');
+  if (!(website == "")) {
+    $(".bottom").append('<div class="web"><i class="fa fa-globe" aria-hidden="true"></i><span class="site">' + website + '<span></div>');
   }
 
   //adding establishment name
