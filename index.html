@@ -18,8 +18,13 @@
     <div class="toggle_container">
         <div class="toggle">
             <input class="tgl tgl-flip" id="cb5" type="checkbox" onclick="toggle();" />
-            <label class="tgl-btn" data-tg-off="Locations" data-tg-on="Heatmap" for="cb5"></label>
+            <label class="tgl-btn" data-tg-off="Locations" data-tg-on="Heatmap" for="cb5" id="toggle"></label>
         </div>
+    </div>
+    <div class="close">
+      <input type="checkbox" id="nav-trigger" class="nav-trigger" onclick="nav()">
+      <label id="nav" class="nav" for="nav-trigger"><i class="fa fa-chevron-right" aria-hidden="true"></i></i>
+</label>
     </div>
     <div class="svg-icons">
         <svg>
@@ -78,7 +83,7 @@
 
     <div class="content">
 
-        <div class="side">
+        <div class="side" id="side">
             <div class="top">
                 <div class="name">McDonald's</div>
 

@@ -1,4 +1,6 @@
 (function() {
+
+
 	
 	var rating2 = document.querySelector(".rating2");
 
@@ -47,5 +49,5 @@
 	// Inject star rating HTML
 	displayRating(rating)
 	rating2.innerHTML = rating;
-
+	
 })()
