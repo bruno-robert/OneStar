@@ -739,7 +739,8 @@ hr {
         overflow: hidden;
     }
     .side {
-        margin-left: -400px;
+        margin-left: -800px;
+        width: 100%;
     }
 }
 

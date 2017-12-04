@@ -5,10 +5,12 @@ let mydata;
 let t_pLat;
 let t_pLng;
 
+//Sets first letter of a string to upercase
 function upperCaseFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+//sets all letters in string to lower case exept fo rthe first letter of each word
 function lowerCaseAllWordsExceptFirstLetters(string) {
   return string.replace(/\w\S*/g, function(word) {
     return word.charAt(0) + word.slice(1).toLowerCase();
@@ -50,23 +52,43 @@ function populateHeatMap(data) {
 
 }
 
-/*function displayPlaceInfo(title, address, telephone) {
-  $(".name").html(title);
-  $(".bottom").html("");
-  $(".bottom").append('<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i><span class="address">' + address + '<span></div>');
+//when using a mobile device or a small window, then this will display teh information pane when you select a place
+function displayInfoPane() {
+  $(".side").css({ "margin-left": "0px", "width": "100%" });
+}
 
+//when using a mobile device or a small window, then this will hide teh information pane
+function hideInfoPane() {
+  $(".side").css("margin-left", "-400px");
+}
+
+//given a google_id, it populates the side bar wit hsome extra data
+/*function getPlaceInfo(placeID) {
+  let url = 'https://maps.googleapis.com/maps/api/place/details/json?';
+  let info = 'key=AIzaSyAOFtHfpkCMyIim6wEFoPGW-Qlyu5nbPuA&placeid=' + placeID;
+  console.log(url + info);
+  $.post(url, info, function(data) {
+    alert("hi");
+    //adding telephone
+    $(".bottom").append('<div class="phone"><i class="fa fa-phone" aria-hidden="true"></i><span class="tel">' + data.formatted_phone_number + '< span > << / div > ');
+
+    //adding website
+    $(".bottom").append('<div class="web"><i class="fa fa-globe" aria-hidden="true"></i><span class="site">' + data.url + '<span></div>');
+
+
+  }, 'json');
 }*/
 
-function displayPlaceInfo(title, address, telephone, website, fine_date, fine, reason) {
-
+//updates the InfoPane's information (html)
+function displayPlaceInfo(title, address, fine_date, fine, reason, phone, website, reviews) {
   //adding telephone
-  if (telephone != null) {
-    $(".bottom").append('<div class="phone"><i class="fa fa-phone" aria-hidden="true"></i><span class="tel">' + telephone + '< span > << / div > ');
+  if(!(phone = "")) {
+    $(".bottom").append('<div class="phone"><i class="fa fa-phone" aria-hidden="true"></i><span class="tel">' + phone + '< span > << / div > ');
   }
-
+  
   //adding website
-  if (website != null) {
-    $(".bottom").append('<div class="web"><i class="fa fa-globe" aria-hidden="true"></i><span class="site">' + website + '<span></div>');
+  if(!(website == "")) {
+  $(".bottom").append('<div class="web"><i class="fa fa-globe" aria-hidden="true"></i><span class="site">' + website + '<span></div>');
   }
 
   //adding establishment name
@@ -95,9 +117,13 @@ function displayPlaceInfo(title, address, telephone, website, fine_date, fine, r
   }
   $(".bottom").append('</div>');
 
-
+  if ($(window).width() <= 700) {
+    displayInfoPane();
+  }
 
 }
+
+
 
 //creates a markermap
 function populateMarkerMap(data) {
@@ -137,7 +163,9 @@ function populateMarkerMap(data) {
     let fine = data[key]['fine'];
     let fine_date = data[key]['fine_date'];
     let reason = data[key]['reason'];
-    let telephone, website = null;
+    let phone = data[key]['phone'] //this may be an empty string
+    let website = data[key]['url'] //this may be an empty string
+    let reviews = data[key]['reviews'] //this is an array
 
     //creation of the marker
     var marker = new google.maps.Marker({
@@ -147,12 +175,11 @@ function populateMarkerMap(data) {
       //icon: image,
       //shape: shape
     });
-    marker.addListener('click', () => displayPlaceInfo(title, address, telephone, website, fine_date, fine, reason));
+    marker.addListener('click', () => displayPlaceInfo(title, address, fine_date, fine, reason, phone, website, reviews));
     markerMapData.push(marker);
   }
 
 }
 
 
-$.get('./data-grabber/data_complete.json', (data) => populateMarkerMap(data));
-//$.get('./data-grabber/data_complete.json', (data) => populateHeatMap(data));
+$.get('./data-grabber/maxed_data.json', (data) => populateMarkerMap(data), 'json');
