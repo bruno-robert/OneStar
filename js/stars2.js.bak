@@ -1,4 +1,4 @@
-(function() {
+function setStars() {
 	
 	var rating2 = document.querySelector(".rating2");
 
@@ -48,4 +48,4 @@
 	displayRating(rating)
 	rating2.innerHTML = rating;
 
-})()
+}

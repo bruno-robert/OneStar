@@ -92,21 +92,71 @@ function hideInfoPane() {
   }, 'json');
 }*/
 
-//updates the InfoPane's information (html)
-function displayPlaceInfo(title, address, fine_date, fine, reason, phone, website, reviews) {
-  //adding telephone
-  if (!(phone = "")) {
-    $(".bottom").append('<div class="phone"><i class="fa fa-phone" aria-hidden="true"></i><span class="tel">' + phone + '< span > << / div > ');
+function setStars() {
+
+  var rating2 = document.querySelector(".rating2");
+
+  var num = document.getElementById('rating');
+  var rating = num.textContent || num.innerText;
+
+  function displayRating(rating = 0, stars = 5) {
+    const CONTAINER = document.getElementById("dynamic-rating2"),
+      FILLED_CLASS = 'star--fill',
+      HALF_CLASS = 'star--half'
+
+    let previous = 0,
+      classes = '',
+      starsDisplay = '<div class="starrating">'
+
+    // Loop through all stars (1 - 5) to decide their display
+    for (let current = 1; current <= stars; current++) {
+      // Determine which class to display
+      (rating > previous && rating < current) ?
+      classes = HALF_CLASS: (rating >= current) ?
+        classes = FILLED_CLASS :
+        classes = ''
+
+      // Generate required HTML
+      starsDisplay += `
+				<div class="star  ${classes}">
+					<svg class="icon  icon--star-left">
+						<use xlink:href="#icon-star-left"></use>
+					</svg>
+					<svg class="icon  icon--star-right">
+						<use xlink:href="#icon-star-right"></use>
+					</svg>
+				</div>`
+
+      previous++
+    }
+
+    starsDisplay += `</div>`
+
+    $("#dynamic-rating").html(starsDisplay);
   }
 
-  //adding website
-  if (!(website == "")) {
-    $(".bottom").append('<div class="web"><i class="fa fa-globe" aria-hidden="true"></i><span class="site">' + website + '<span></div>');
-  }
+
+
+  // Inject star rating HTML
+  displayRating(rating)
+  //rating2.innerHTML = rating;
+
+}
+
+//updates the InfoPane's information (html)
+function displayPlaceInfo(title, address, fine_date, fine, reason, phone, website, reviews, rating) {
+
 
   //adding establishment name
   title = upperCaseFirstLetter(lowerCaseAllWordsExceptFirstLetters(title));
   $(".name").html(title);
+  if (rating == "") {
+    $('.rating').html(1);
+  }
+  else {
+    $('.rating').html(rating);
+  }
+  setStars();
 
   //calculates the total of the fines (the fines are strings and need to be changed to integers/doubles)
   let total_fines = 0;
@@ -118,9 +168,24 @@ function displayPlaceInfo(title, address, fine_date, fine, reason, phone, websit
 
   $(".bottom").html(""); //emptying the previous data
 
+  //adding telephone
+  if (!(phone == "")) {
+    $(".bottom").append('<div class="phone"><i class="fa fa-phone" aria-hidden="true"></i><span class="tel">' + phone + '</span> </div> ');
+  }
+
+  //adding website
+
+  if (website != "") {
+    console.log(website);
+    $(".bottom").append('<div class="web"><i class="fa fa-globe" aria-hidden="true"></i><span class="site"> <a href="' + website + '"> homepage </a><span></div>');
+  }
+
   //adding address
   $(".bottom").append('<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i><span class="address">' + address + '<span></div>');
 
+  $(".bottom").append("<hr>");
+  
+  //adding infractions
   $(".bottom").append(' <div class="infraction">');
   for (let i = 0; i < fine.length; i++) {
     $(".infraction").append('<div class="finedate">Date of infraction<br><span class="date">' + fine_date[i] + '<span></div>');
@@ -130,9 +195,25 @@ function displayPlaceInfo(title, address, fine_date, fine, reason, phone, websit
   }
   $(".bottom").append('</div>');
 
-  if ($(window).width() <= 700) {
-    displayInfoPane();
+  //adding ratings
+  $(".bottom").append("<hr>");
+  $(".bottom").append('<div class="rating2"></div>');
+  $(".bottom").append('<div class="stars2" id="dynamic-rating2"></div>');
+  $(".bottom").append('<div class="reviewamount">' + reviews.length + ' Reviews</div>');
+  
+  for(let i = 0; i < reviews.length; i++) {
+    $(".bottom").append('<div class="review">');
+    
+    $(".bottom").append(reviews[i].rating + "/5");
+    $(".bottom").append('<div class="reviewname">' + reviews[i].author_name + '<span class="reviewdate"> - ' + reviews[i].relative_time_description + '<span></div>');
+    $(".bottom").append('<div class="reviewdesc">' + reviews[i].text + '</div>');
+    
+    $(".bottom").append('</div>');
   }
+
+
+  displayInfoPane();
+
 
 }
 
@@ -176,9 +257,10 @@ function populateMarkerMap(data) {
     let fine = data[key]['fine'];
     let fine_date = data[key]['fine_date'];
     let reason = data[key]['reason'];
-    let phone = data[key]['phone'] //this may be an empty string
-    let website = data[key]['url'] //this may be an empty string
-    let reviews = data[key]['reviews'] //this is an array
+    let phone = data[key]['phone']; //this may be an empty string
+    let website = data[key]['website']; //this may be an empty string
+    let reviews = data[key]['reviews']; //this is an array
+    let rating = data[key]['rating'];
 
     //creation of the marker
     var marker = new google.maps.Marker({
@@ -188,11 +270,11 @@ function populateMarkerMap(data) {
       //icon: image,
       //shape: shape
     });
-    marker.addListener('click', () => displayPlaceInfo(title, address, fine_date, fine, reason, phone, website, reviews));
+    marker.addListener('click', () => displayPlaceInfo(title, address, fine_date, fine, reason, phone, website, reviews, rating));
     markerMapData.push(marker);
   }
 
 }
 
 
-$.get('./data-grabber/maxed_data.json', (data) => populateMarkerMap(data), 'json');
+$.get('./data-grabber/maxed_data_fixed.json', (data) => populateMarkerMap(data), 'json');
