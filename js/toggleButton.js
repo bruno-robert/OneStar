@@ -1,11 +1,11 @@
 /*global $*/
 function toggle() {
   if (document.getElementById('cb5').checked) {
-    $.get('./data-grabber/data_complete.json', (data) => populateHeatMap(data));
+    $.get('./data-grabber/maxed_data_fixed.json', (data) => populateHeatMap(data));
   }
   else {
 
-    $.get('./data-grabber/data_complete.json', (data) => populateMarkerMap(data));
+    $.get('./data-grabber/maxed_data_fixed.json', (data) => populateMarkerMap(data));
   }
 }
 

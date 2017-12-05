@@ -234,10 +234,10 @@ function populateMarkerMap(data) {
   });
 
   var image = {
-    url: './marker.png',
+    url: './Marker2.png',
     size: new google.maps.Size(30, 30),
     origin: new google.maps.Point(0, 0),
-    anchor: new google.maps.Point(15, 15)
+    anchor: new google.maps.Point(0, 0)
   };
 
   // Shapes define the clickable region of the icon. The type defines an HTML
@@ -266,9 +266,9 @@ function populateMarkerMap(data) {
     var marker = new google.maps.Marker({
       position: { lat: vlat, lng: vlng },
       map: map,
-      title: title //,
-      //icon: image,
-      //shape: shape
+      title: title,
+      icon: image,
+      shape: shape
     });
     marker.addListener('click', () => displayPlaceInfo(title, address, fine_date, fine, reason, phone, website, reviews, rating));
     markerMapData.push(marker);
