@@ -440,14 +440,14 @@ input[type=checkbox] {
     top: 40px;
     left: -400px;
     color: rgba(0, 0, 0, 0.4);
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: #F0F0F0;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     border-bottom:  1px solid rgba(0, 0, 0, 0.1);
     border-right:  1px solid rgba(0, 0, 0, 0.1);
 }
 
 .nav:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: #E8E8E8;
   border-top: 1px solid rgba(0, 0, 0, 0.3);
   border-bottom:  1px solid rgba(0, 0, 0, 0.3);
   border-right:  1px solid rgba(0, 0, 0, 0.3);
@@ -595,6 +595,7 @@ input[type=checkbox] {
 }
 
 .finedate {
+  padding-top: 20px;
     width: 170px;
     float: left;
     font-family: 'Roboto', sans-serif;
@@ -608,6 +609,7 @@ input[type=checkbox] {
 }
 
 .fineamount {
+    padding-top: 20px;
     margin-left: 170px;
     width: 150px;
     font-family: 'Roboto', sans-serif;
@@ -621,6 +623,7 @@ input[type=checkbox] {
 }
 
 .description {
+  padding-bottom: 20px;
     margin-top: 15px;
     width: 300px;
     font-family: 'Roboto', sans-serif;
@@ -791,7 +794,7 @@ input[type=checkbox] {
         z-index: 10;
         position: fixed;
         left: 350px;
-        
+
     }
     .header-left {
         justify-content: center;
