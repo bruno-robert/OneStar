@@ -167,21 +167,21 @@ function displayPlaceInfo(title, address, fine_date, fine, reason, phone, websit
 
 
   $(".bottom").html(""); //emptying the previous data
-
+  
   //adding telephone
   if (!(phone == "")) {
-    $(".bottom").append('<div class="phone"><i class="fa fa-phone" aria-hidden="true"></i><span class="tel">' + phone + '</span> </div> ');
+    $(".bottom").append('<div class="phone"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 31.53 31.46"><title>Asset 2</title><path d="M30.82,24.88,26,20a2.55,2.55,0,0,0-3.58.07l-2.45,2.45-.48-.27A24.43,24.43,0,0,1,13.54,18a24.56,24.56,0,0,1-4.28-5.92L9,11.61,10.64,10l.81-.81a2.53,2.53,0,0,0,.07-3.58L6.65.71A2.54,2.54,0,0,0,3.07.77L1.7,2.15l0,0a8.08,8.08,0,0,0-1.63,4C-.54,11.54,1.89,16.41,8.5,23c9.14,9.14,16.5,8.45,16.82,8.41a8,8,0,0,0,4-1.63l0,0,1.39-1.36a2.55,2.55,0,0,0,.06-3.59Z" style="fill:#f3b721"/></svg>&nbsp;&nbsp;<span class="tel">' + phone + '</span> </div> ');
   }
 
   //adding website
 
   if (website != "") {
     console.log(website);
-    $(".bottom").append('<div class="web"><i class="fa fa-globe" aria-hidden="true"></i><span class="site"> <a href="' + website + '"> homepage </a><span></div>');
+    $(".bottom").append('<div class="web"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 31.2 31.2"><title>Asset 4</title><path d="M28.55,6.92l-.46.15-2.49.22-.7,1.12-.51-.16-2-1.79-.3-.92-.38-1L20.5,3.43,19,3.15l0,.67,1.44,1.4.7.83-.79.41-.65-.19-1-.4,0-.78-1.26-.52L17.09,6.4l-1.28.29.13,1L17.6,8l.29-1.63,1.37.2.63.37h1l.7,1.41,1.85,1.88-.13.73-1.5-.19-2.59,1.31-1.86,2.23-.24,1h-.67l-1.24-.57L14,15.33l.3,1.28.52-.61.93,0-.07,1.15.77.22.77.86,1.25-.35,1.43.22,1.66.45.83.1,1.4,1.59,2.71,1.6-1.75,3.35L22.92,26l-.7,1.91-2.68,1.79-.28,1A15.57,15.57,0,0,0,28.55,6.92Z" style="fill:#f3b721"/><path d="M17.39,23.75l-1.13-2.1,1-2.17-1-.32L15.09,18l-2.6-.58-.86-1.81v1.07h-.38L9,13.64V11.15L7.38,8.49,4.77,9H3l-.88-.58,1.12-.89-1.12.26A15.58,15.58,0,0,0,15.6,31.2a18.25,18.25,0,0,0,2-.13l-.17-1.89s.72-2.81.72-2.9-.72-2.53-.72-2.53Z" style="fill:#f3b721"/><path d="M5.8,5l2.77-.38,1.28-.71,1.44.42,2.29-.13L14.36,3l1.15.19,2.79-.26.76-.84,1.09-.73,1.53.23.56-.08A15.55,15.55,0,0,0,3.57,5.67h0ZM16.26,1.55,17.85.67l1,.6L17.39,2.39,16,2.54l-.64-.42Zm-4.72.13.7.29.92-.29.5.87-2.12.56-1-.6s1-.64,1-.83Z" style="fill:#f3b721"/></svg>&nbsp;&nbsp;<span class="site"> <a href="' + website + '"> google maps </a><span></div>');
   }
 
   //adding address
-  $(".bottom").append('<div class="location"><i class="fa fa-map-marker" aria-hidden="true"></i><span class="address">' + address + '<span></div>');
+  $(".bottom").append('<div class="location"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 21.67 31.46"><title>Asset 3</title><path d="M21.16,7.83a9.22,9.22,0,0,0-.51-1.26A10.56,10.56,0,0,0,10.69,0,10.6,10.6,0,0,0,0,9.76V11.1c0,.06,0,.56.05.81C.44,15,2.91,18.37,4.76,21.5c2,3.36,4,6.66,6.08,10,1.26-2.15,2.52-4.34,3.74-6.43.34-.62.73-1.23,1.06-1.82.23-.39.66-.78.85-1.15,2-3.63,5.18-7.29,5.18-10.9V9.68a10.64,10.64,0,0,0-.51-1.85ZM10.78,14.57a3.86,3.86,0,0,1-3.69-2.63A3.71,3.71,0,0,1,7,11v-.87A3.64,3.64,0,0,1,10.9,6.51a4,4,0,0,1,4,4,4.06,4.06,0,0,1-4.08,4Z" style="fill:#f3b721"/></svg>&nbsp;&nbsp;</i><span class="address">' + address + '<span></div>');
 
   $(".bottom").append("<hr>");
   
